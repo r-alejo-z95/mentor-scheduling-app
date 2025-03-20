@@ -1,5 +1,7 @@
+"use server";
+
 import { redirect } from "next/navigation";
-import { auth } from "./auth";
+import { auth, signIn } from "./auth";
 
 export async function redirectIfNotAuthenticated() {
   const session = await auth();
@@ -10,11 +12,8 @@ export async function redirectIfNotAuthenticated() {
   return session;
 }
 
-export async function redirectIfAuthenticated() {
-  const session = await auth();
+export async function submitGoogleButton() {
+  const submit = await signIn("google");
 
-  if (session?.user) {
-    return redirect("/");
-  }
-  return session;
+  return submit;
 }

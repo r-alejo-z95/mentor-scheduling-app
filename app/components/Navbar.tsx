@@ -3,14 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.png";
-import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
+import AuthDialog from "./AuthDialog";
 
 export function Navbar() {
-  const handleLogin = () => {
-    redirect("/auth/log-in");
-  };
-
   return (
     <div className="flex py-5 items-center justify-between">
       <Link href="/" className="flex items-center gap-2">
@@ -20,7 +15,7 @@ export function Navbar() {
         </h4>
       </Link>
 
-      <Button onClick={handleLogin}>Get started</Button>
+      <AuthDialog />
     </div>
   );
 }
