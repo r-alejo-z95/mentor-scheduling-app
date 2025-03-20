@@ -14,9 +14,13 @@ import { Menu } from "lucide-react";
 import { ThemeToggle } from "../components/ThemeToggle";
 import {
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { auth } from "../lib/auth";
+import { auth, signOut } from "../lib/auth";
 
 export default async function DashboardLayout({
   children,
@@ -70,9 +74,9 @@ export default async function DashboardLayout({
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="ghost"
+                    variant="ghost2"
                     size="icon"
-                    className="rounded-full size-9.5 border-1 hover:border-orange-400"
+                    className="rounded-full size-10 border-2 hover:border-orange-300"
                   >
                     <img
                       src={session?.user?.image as string}
@@ -81,6 +85,28 @@ export default async function DashboardLayout({
                     />
                   </Button>
                 </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel className="cursor-default">
+                    Account
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard/settings">Settings</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <form
+                      className="w-full"
+                      action={async () => {
+                        "use server";
+                        await signOut();
+                      }}
+                    >
+                      <button className="w-full cursor-pointer text-left">
+                        Log out
+                      </button>
+                    </form>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </header>

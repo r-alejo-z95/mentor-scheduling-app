@@ -1,7 +1,11 @@
 import { redirectIfNotAuthenticated } from "../lib/hooks";
 
 export default async function DashboardPage() {
-  const session = await redirectIfNotAuthenticated();
+  await redirectIfNotAuthenticated();
 
-  return <div>dashboard</div>;
+  return (
+    <div>
+      <h1>THIS IS THE DASHBOARD PAGE</h1>
+    </div>
+  );
 }
