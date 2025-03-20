@@ -1,8 +1,8 @@
 import { Navbar } from "../components/Navbar";
-import { requireUser } from "../lib/hooks";
+import { redirectIfNotAuthenticated } from "../lib/hooks";
 
 export default async function DashboardPage() {
-  const session = await requireUser();
+  const session = await redirectIfNotAuthenticated();
 
   return <div>dashboard</div>;
 }

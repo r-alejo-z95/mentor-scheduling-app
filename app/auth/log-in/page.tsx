@@ -5,8 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
 import { signIn } from "@/app/lib/auth";
+import { redirectIfAuthenticated } from "@/app/lib/hooks";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await redirectIfAuthenticated();
+
   return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-8 dark:bg-transparent">
       <form
