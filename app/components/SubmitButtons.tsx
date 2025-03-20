@@ -1,26 +1,36 @@
-"use client";
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useFormStatus } from "react-dom";
 import { submitGoogleButton } from "../lib/hooks";
 
 export function GoogleAuthButton() {
-  const { pending } = useFormStatus();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = async () => {
+    setIsLoading(true);
+    try {
+      await submitGoogleButton();
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <>
-      {pending ? (
-        <Button disabled variant="ghost" className="w-full">
-          <Loader2 className="size-4 mr-2 animate-spin" /> Please Wait
-        </Button>
+    <Button
+      variant="outline"
+      className="w-full"
+      onClick={handleClick}
+      disabled={isLoading}
+    >
+      {isLoading ? (
+        <>
+          <Loader2 className="size-4 mr-2 animate-spin" />
+          Please Wait
+        </>
       ) : (
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full"
-          onClick={async () => submitGoogleButton()}
-        >
+        <>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="0.98em"
@@ -45,8 +55,8 @@ export function GoogleAuthButton() {
             ></path>
           </svg>
           <span>Sign in with Google</span>
-        </Button>
+        </>
       )}
-    </>
+    </Button>
   );
 }

@@ -13,7 +13,7 @@ export async function redirectIfNotAuthenticated() {
 }
 
 export async function submitGoogleButton() {
-  const submit = await signIn("google");
+  await signIn("google");
 
-  return submit;
+  return;
 }

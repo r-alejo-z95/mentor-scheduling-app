@@ -1,13 +1,18 @@
-import { GoogleAuthButton } from "@/app/components/SubmitButtons";
-import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
+import { GoogleAuthButton } from "@/app/components/SubmitButtons";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function AuthDialog() {
   return (
     <Dialog>
+      <DialogTitle hidden />
       <DialogTrigger asChild>
         <Button>Get started</Button>
       </DialogTrigger>
@@ -17,7 +22,7 @@ export default function AuthDialog() {
             <Image src={Logo} alt="Logo" className="size-10" />
 
             <h1 className="mb-1 mt-4 text-3xl font-semibold">
-              Mentor<span className="text-primary">Link</span>
+              Mentor<span className="text-orange-400">Link</span>
             </h1>
           </div>
 
@@ -27,6 +32,7 @@ export default function AuthDialog() {
 
           <div className="mt-4 flex flex-col gap-2 justify-center">
             <GoogleAuthButton />
+
             <GoogleAuthButton />
           </div>
         </div>
