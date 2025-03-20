@@ -3,7 +3,15 @@ import Image from "next/image";
 import Logo from "@/public/logo.png";
 import { ReactNode } from "react";
 import { DashboardLinks } from "../components/DashboardLinks";
-import { Navbar } from "../components/Navbar";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
@@ -27,10 +35,30 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="flex flex-col">
-          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6"></header>
+          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+            <Sheet>
+              <SheetTitle hidden />
+              <SheetTrigger asChild>
+                <Button
+                  className="md:hidden shrink-0"
+                  size="icon"
+                  variant="outline"
+                >
+                  <Menu className="size-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="flex flex-col">
+                <nav className="flex flex-col gap-2 mt-10 mx-auto w-[300px] ">
+                  <DashboardLinks />
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <div className="ml-auto flex itms-center gap-x-4">
+              <ThemeToggle />
+            </div>
+          </header>
         </div>
       </div>
-      {children}
     </>
   );
 }
