@@ -12,8 +12,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "../components/ThemeToggle";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { auth } from "../lib/auth";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const session = await auth();
+
   return (
     <>
       <div className="min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -53,8 +64,24 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 </nav>
               </SheetContent>
             </Sheet>
-            <div className="ml-auto flex itms-center gap-x-4">
+            <div className="ml-auto flex items-center gap-x-2">
               <ThemeToggle />
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full size-9.5 border-1 hover:border-orange-400"
+                  >
+                    <img
+                      src={session?.user?.image as string}
+                      alt="Profile Picture"
+                      className="w-full h-full rounded-full"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+              </DropdownMenu>
             </div>
           </header>
         </div>

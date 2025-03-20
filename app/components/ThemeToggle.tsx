@@ -21,14 +21,14 @@ export function ThemeToggle() {
   };
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme}>
+    <Button variant="ghost2" size="default" onClick={toggleTheme}>
       <Sun
-        className={`h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`h-[2rem] w-[2rem] transition-all ${
           currentTheme === "dark" ? "scale-0 rotate-90" : "scale-100 rotate-0"
         }`}
       />
       <Moon
-        className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`absolute h-[2rem] w-[2rem] transition-all ${
           currentTheme === "dark" ? "scale-100 rotate-0" : "scale-0 -rotate-90"
         }`}
       />
