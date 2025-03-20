@@ -1,4 +1,3 @@
-import { Navbar } from "../components/Navbar";
 import { redirectIfNotAuthenticated } from "../lib/hooks";
 
 export default async function DashboardPage() {
