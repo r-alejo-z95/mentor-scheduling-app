@@ -17,7 +17,7 @@ export default function AuthDialog() {
             <Image src={Logo} alt="Logo" className="size-10" />
 
             <h1 className="mb-1 mt-4 text-3xl font-semibold">
-              Mentor<span className="text-orange-400">Link</span>
+              Mentor<span className="text-primary">Link</span>
             </h1>
           </div>
 

@@ -11,7 +11,7 @@ export function GoogleAuthButton() {
   return (
     <>
       {pending ? (
-        <Button disabled variant="outline" className="w-full">
+        <Button disabled variant="ghost" className="w-full">
           <Loader2 className="size-4 mr-2 animate-spin" /> Please Wait
         </Button>
       ) : (

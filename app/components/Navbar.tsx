@@ -11,7 +11,7 @@ export function Navbar() {
       <Link href="/" className="flex items-center gap-2">
         <Image src={Logo} alt="Logo" className="size-10" />
         <h4 className="text-3xl font-semibold">
-          Mentor<span className="text-orange-400">Link</span>
+          Mentor<span className="text-primary">Link</span>
         </h4>
       </Link>
 
