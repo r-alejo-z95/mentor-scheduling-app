@@ -20,7 +20,7 @@ export function Navbar() {
         </h4>
       </Link>
 
-      <Button onClick={handleLogin}>Log in</Button>
+      <Button onClick={handleLogin}>Get started</Button>
     </div>
   );
 }

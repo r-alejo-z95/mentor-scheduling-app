@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.png";
+import { signIn } from "@/app/lib/auth";
 
 export default function LoginPage() {
   return (
@@ -23,8 +24,16 @@ export default function LoginPage() {
             <p className="text-sm">Welcome! Create an account to get started</p>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <Button type="button" variant="outline">
+          <div className="mt-6 flex justify-center">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={async () => {
+                "use server";
+                await signIn("google");
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="0.98em"
