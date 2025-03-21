@@ -25,10 +25,8 @@ export default function OnboardingRoute() {
         <form>
           <CardContent className="flex flex-col gap-y-5">
             <div className="grid gap-y-2">
-              <Label>First Name</Label>
-              <Input placeholder="John" />
-              <Label>Last Name</Label>
-              <Input placeholder="Doe" />
+              <Label>Full Name</Label>
+              <Input placeholder="John Doe" />
             </div>
             <div className="grid gap-y-2">
               <Label>Username</Label>
