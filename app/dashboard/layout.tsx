@@ -93,7 +93,7 @@ export default async function DashboardLayout({
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard/settings">Settings</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
+                  <DropdownMenuLabel>
                     <form
                       className="w-full"
                       action={async () => {
@@ -101,15 +101,14 @@ export default async function DashboardLayout({
                         await signOut();
                       }}
                     >
-                      <button className="w-full cursor-pointer text-left">
-                        Log out
-                      </button>
+                      <Button className="w-full">Log out</Button>
                     </form>
-                  </DropdownMenuItem>
+                  </DropdownMenuLabel>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </header>
+          <main>{children}</main>
         </div>
       </div>
     </>
