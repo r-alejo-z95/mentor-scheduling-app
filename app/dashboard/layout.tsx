@@ -21,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "../lib/auth";
+import { redirectIfNotAuthenticated } from "../lib/hooks";
 
 export default async function DashboardLayout({
   children,
@@ -28,6 +29,7 @@ export default async function DashboardLayout({
   children: ReactNode;
 }) {
   const session = await auth();
+  await redirectIfNotAuthenticated();
 
   return (
     <>

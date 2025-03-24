@@ -1,8 +1,4 @@
-import { redirectIfNotAuthenticated } from "../lib/hooks";
-
-export default async function DashboardPage() {
-  await redirectIfNotAuthenticated();
-
+export default function DashboardPage() {
   return (
     <div>
       <h1>THIS IS THE DASHBOARD PAGE</h1>
