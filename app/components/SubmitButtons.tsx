@@ -1,16 +1,51 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
-import { useFormStatus } from "react-dom"; // Asegúrate de importar el hook correctamente
+import { useFormStatus } from "react-dom";
 
-export function GoogleAuthButton() {
-  const { pending } = useFormStatus(); // Obtiene el estado del formulario
+interface iAppProps {
+  text: string;
+  variant?:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "ghost2"
+    | null
+    | undefined;
+
+  className?: string;
+}
+
+export function SubmitButton({ text, variant, className }: iAppProps) {
+  const { pending } = useFormStatus();
 
   return (
-    <Button
-      variant="outline"
-      className="w-full"
-      disabled={pending} // Deshabilita el botón si el estado es "pending"
-    >
+    <>
+      {pending ? (
+        <Button disabled variant="outline" className={cn("w-fit", className)}>
+          <Loader2 className="size-4 mr-2 animate-spin" /> Please wait
+        </Button>
+      ) : (
+        <Button
+          type="submit"
+          variant={variant}
+          className={cn("w-fit", className)}
+        >
+          {text}
+        </Button>
+      )}
+    </>
+  );
+}
+
+export function GoogleAuthButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button disabled={pending} variant="outline" className="w-full">
       {pending ? (
         <>
           <Loader2 className="size-4 mr-2 animate-spin" />
