@@ -21,15 +21,34 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "../lib/auth";
+import { prisma } from "../lib/db";
+import { redirect } from "next/navigation";
 import { redirectIfNotAuthenticated } from "../lib/hooks";
+
+async function getData(userId: string) {
+  const data = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      userName: true,
+    },
+  });
+
+  if (!data?.userName) {
+    return redirect("/onboarding");
+  }
+  return data;
+}
 
 export default async function DashboardLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const session = await auth();
   await redirectIfNotAuthenticated();
+  const session = await auth();
+  const data = await getData(session?.user?.id as string);
 
   return (
     <>

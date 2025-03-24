@@ -17,6 +17,7 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { onboardingSchema } from "../lib/zodSchemas";
 import { SubmitButton } from "../components/SubmitButtons";
+import Link from "next/link";
 
 export default function OnboardingRoute() {
   const [lastResult, action] = useActionState(OnboardingAction, undefined);
@@ -37,7 +38,10 @@ export default function OnboardingRoute() {
       <Card className="min-w-[200px] md:min-w-[300px] lg:min-w-[500px] p-6 shadow-lg rounded-lg mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
-            Welcome to Mentor<span className="text-orange-400">Link</span>
+            Welcome to{" "}
+            <Link href="/">
+              Mentor<span className="text-orange-400">Link</span>
+            </Link>
           </CardTitle>
           <CardDescription className="text-center">
             Please fill out your information to set up your profile
