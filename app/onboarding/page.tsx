@@ -39,7 +39,7 @@ export default function OnboardingRoute() {
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Welcome to{" "}
-            <Link href="/">
+            <Link href="/" className="hover:bg-muted hover:rounded-2xl">
               Mentor<span className="text-orange-400">Link</span>
             </Link>
           </CardTitle>
