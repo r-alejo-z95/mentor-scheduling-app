@@ -19,7 +19,7 @@ export const onboardingSchema = z.object({
 });
 
 export function onboardingSchemaValidation(options?: {
-  isUserNameUnique: () => Promise<boolean>;
+  isUsernameUnique: () => Promise<boolean>;
 }) {
   return z.object({
     userName: z
@@ -31,7 +31,7 @@ export function onboardingSchemaValidation(options?: {
       })
       .pipe(
         z.string().superRefine((_, ctx) => {
-          if (typeof options?.isUserNameUnique !== "function") {
+          if (typeof options?.isUsernameUnique !== "function") {
             ctx.addIssue({
               code: "custom",
               message: conformZodMessage.VALIDATION_UNDEFINED,
@@ -39,7 +39,7 @@ export function onboardingSchemaValidation(options?: {
             });
             return;
           }
-          return options.isUserNameUnique().then((isUnique) => {
+          return options.isUsernameUnique().then((isUnique) => {
             if (!isUnique) {
               ctx.addIssue({
                 code: "custom",
