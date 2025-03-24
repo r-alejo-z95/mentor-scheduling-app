@@ -1,30 +1,17 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { submitGoogleButton } from "../lib/hooks";
+import { useFormStatus } from "react-dom"; // Asegúrate de importar el hook correctamente
 
 export function GoogleAuthButton() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleClick = async () => {
-    setIsLoading(true);
-    try {
-      await submitGoogleButton();
-    } catch (error) {
-      console.error("Error during Google sign-in:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { pending } = useFormStatus(); // Obtiene el estado del formulario
 
   return (
     <Button
       variant="outline"
       className="w-full"
-      onClick={handleClick}
-      disabled={isLoading}
+      disabled={pending} // Deshabilita el botón si el estado es "pending"
     >
-      {isLoading ? (
+      {pending ? (
         <>
           <Loader2 className="size-4 mr-2 animate-spin" />
           Please Wait

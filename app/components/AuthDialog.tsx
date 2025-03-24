@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { submitGoogleButton } from "../lib/hooks";
 
 export default function AuthDialog() {
   return (
@@ -31,9 +32,13 @@ export default function AuthDialog() {
           <hr className="my-2 border-dashed" />
 
           <div className="mt-4 flex flex-col gap-2 justify-center">
-            <GoogleAuthButton />
-
-            <GoogleAuthButton />
+            <form
+              action={async () => {
+                await submitGoogleButton();
+              }}
+            >
+              <GoogleAuthButton />
+            </form>
           </div>
         </div>
       </DialogContent>
