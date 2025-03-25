@@ -1,10 +1,14 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CalendarCheck2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function OnboradingRouteNylas() {
   return (
@@ -27,6 +31,14 @@ export default function OnboradingRouteNylas() {
             />
           </div>
         </CardHeader>
+        <CardContent className="flex">
+          <Button className="w-fit mx-auto">
+            <Link href="/" className="flex flex-row items-center">
+              <CalendarCheck2 className="size-4 mr-2" />
+              Connect calendar to your account
+            </Link>
+          </Button>
+        </CardContent>
       </Card>
     </div>
   );
