@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,8 +17,37 @@ import { parseWithZod } from "@conform-to/zod";
 import { onboardingSchema } from "../lib/zodSchemas";
 import { SubmitButton } from "../components/SubmitButtons";
 import Link from "next/link";
+import { redirectIfNotAuthenticated } from "../lib/hooks";
+import { useEffect, useState } from "react";
 
 export default function OnboardingRoute() {
+  // Check auth, protected page
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function checkAuthentication() {
+      const isAuthenticated = await redirectIfNotAuthenticated();
+      if (!isAuthenticated) {
+        return;
+      }
+      setIsLoading(false);
+    }
+    checkAuthentication();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-5 lg:gap-7 bg-background">
+        <h1 className="text-5xl lg:text-7xl text-orange-400 text-center">
+          You need to login to view this page
+        </h1>
+        <p className="text-3xl lg:text-5xl text-center">
+          Redirecting to home screen...
+        </p>
+      </div>
+    );
+  }
+
   const [lastResult, action] = useActionState(OnboardingAction, undefined);
   const [form, fields] = useForm({
     lastResult,
