@@ -21,7 +21,6 @@ import { redirectIfNotAuthenticated } from "../lib/hooks";
 import { useEffect, useState } from "react";
 
 export default function OnboardingRoute() {
-  // Check auth, protected page
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -35,6 +34,18 @@ export default function OnboardingRoute() {
     checkAuthentication();
   }, []);
 
+  const [lastResult, action] = useActionState(OnboardingAction, undefined);
+  const [form, fields] = useForm({
+    lastResult,
+    onValidate({ formData }) {
+      return parseWithZod(formData, {
+        schema: onboardingSchema,
+      });
+    },
+    shouldValidate: "onBlur",
+    shouldRevalidate: "onInput",
+  });
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-5 lg:gap-7 bg-background">
@@ -47,19 +58,6 @@ export default function OnboardingRoute() {
       </div>
     );
   }
-
-  const [lastResult, action] = useActionState(OnboardingAction, undefined);
-  const [form, fields] = useForm({
-    lastResult,
-    onValidate({ formData }) {
-      return parseWithZod(formData, {
-        schema: onboardingSchema,
-      });
-    },
-
-    shouldValidate: "onBlur",
-    shouldRevalidate: "onInput",
-  });
 
   return (
     <div className="min-h-screen w-screen flex items-center justify-center bg-slate-100">

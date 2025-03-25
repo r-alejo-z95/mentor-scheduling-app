@@ -1,13 +1,14 @@
 "use server";
 
 import { prisma } from "./lib/db";
-import { redirectIfNotAuthenticated } from "./lib/hooks";
+
 import { parseWithZod } from "@conform-to/zod";
 import { onboardingSchema, onboardingSchemaValidation } from "./lib/zodSchemas";
 import { redirect } from "next/navigation";
+import { auth } from "./lib/auth";
 
 export async function OnboardingAction(prevState: any, formData: FormData) {
-  const session = await redirectIfNotAuthenticated();
+  const session = await auth();
 
   const submission = await parseWithZod(formData, {
     schema: onboardingSchemaValidation({
