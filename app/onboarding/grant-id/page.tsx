@@ -33,7 +33,7 @@ export default function OnboradingRouteNylas() {
         </CardHeader>
         <CardContent className="flex">
           <Button className="w-fit mx-auto">
-            <Link href="/" className="flex flex-row items-center">
+            <Link href="/api/auth" className="flex flex-row items-center">
               <CalendarCheck2 className="size-4 mr-2" />
               Connect calendar to your account
             </Link>
